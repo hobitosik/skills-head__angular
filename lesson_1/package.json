@@ -1,0 +1,36 @@
+{
+  "name": "lesson_1",
+  "version": "1.0.0",
+  "description": "Homework of Angular courses",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hobitosik/skills-head__angular.git"
+  },
+  "keywords": [
+    "Angular"
+  ],
+  "author": "Elvina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hobitosik/skills-head__angular/issues"
+  },
+  "homepage": "https://github.com/hobitosik/skills-head__angular#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^1.5.4",
+    "lite-server": "^2.3.0"
+  },
+  "dependencies": {
+    "jquery": "^3.1.0"
+  }
+}

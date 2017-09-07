@@ -1,0 +1,192 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "fontawesome/font-awesome";
+@import "utils";
+@import "overrides";
+
+/**** the STANDART CONTENT ELEMENTS *****/
+// =============================================================================
+// Only the most basic global styles for the website
+
+* {box-sizing: border-box;}
+
+html {
+  height: 100%;
+  font-size: 100.01%;
+}
+
+body {
+	// background: $col-bg-default;
+	// color: $col-text-default;
+	// font-family: $font-default;
+	font-size: 15px;
+	-webkit-font-smoothing: antialiased;
+	// font-smooth: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: bold;
+	text-transform: uppercase;
+	// color: $col-headline-default;
+}
+
+h2 {
+	font-size: 36px;
+}
+
+h3 {
+	margin-top: 0;
+	font-size: 26px;
+}
+
+a {
+	// color: $col-orange;
+	transition: color .25s linear;
+
+	// &:hover {color: $col-grey1;}
+}
+
+input {
+	// &::-webkit-input-placeholder {color: $col-grey2;}
+
+	// &:-moz-placeholder {color: $col-grey2;}
+}
+
+textarea {
+	// &::-webkit-input-placeholder {color: $col-grey2;}
+
+	// &:-moz-placeholder {color: $col-grey2;}
+}
+/**** END standard content elements ****/
+
+/***** BASE ELEMENT *****/
+// Universal Class
+// -------------------------//
+
+// positions element
+.rel {position: relative;}
+.abs {position: absolute;}
+.affix {position: fixed;}
+
+// floats element
+.left {float: left;}
+.right {float: right;}
+
+// clear
+.clear {
+	display: block;
+	clear: both;
+}
+
+.clear-left {
+	display: block;
+	clear: left;
+}
+
+.clear-right {
+	display: block;
+	clear: right;
+}
+
+// element mapping
+.overhide {overflow: hidden;}
+.vishid {visibility: hidden;}
+
+// display types
+.disnone {display: none;}
+.disinbl {display: inline-block;}
+.disblock {display: block;}
+.distab {display: table;}
+.distabrow {display: table-row;}
+.distabcell {display: table-cell;}
+
+// zero padding, margin and borders
+.nopad {padding: 0;}
+.nomrg {margin: 0;}
+.nobrd {border: 0;}
+
+.box-zero {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.list-box-zero {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+// align text horizontally
+.center {text-align: center;}
+.tleft {text-align: left;}
+.tright {text-align: right;}
+
+// vertical text alignment
+.top {vertical-align: top;}
+.middle {vertical-align: middle;}
+.bottom {vertical-align: bottom;}
+
+// text transform
+.uppercase {text-transform: uppercase;}
+.text-trans-none {text-transform: none;}
+
+// cutting string line (three dots)
+.text-overhide {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+// text decoration
+.underline {text-decoration: underline;}
+.text-decor-none {text-decoration: none;}
+// prohibition of transfer lines
+.nowrap {white-space: nowrap}
+
+// cursors
+.curpoint {cursor: pointer;}
+
+
+/************/
+/* template */
+/************/  
+
+
+/**********/
+/* header */
+/**********/
+
+
+/**********/
+/* footer */
+/**********/
+
+/************ MEDIA ***********/
+@media all and (max-width: 1440px) {
+	
+}
+
+@media all and (max-width: 1366px) {
+	
+}
+
+@media all and (max-width: 1280px) {
+	
+}
+
+@media all and (max-width: 960px) {
+	
+}
+
+@media all and (max-width: 640px) {	
+	
+}
+
+@media all and (max-width: 480px), only screen and (max-device-width: 480px) {
+
+}
