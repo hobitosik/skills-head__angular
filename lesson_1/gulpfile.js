@@ -26,7 +26,7 @@ gulp.task('sass', function(){
 /* JavaScript */
 gulp.task('scripts', function(){
 	return gulp.src([
-		'https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js',
+		'./assets/javascripts/lib/jquery-1.11.0.min.js',
 		'./assets/javascripts/bootstrap.min.js',
 		'./assets/javascripts/script.js'
 	])
