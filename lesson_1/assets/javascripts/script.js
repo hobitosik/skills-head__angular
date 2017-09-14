@@ -16,11 +16,7 @@ jQuery(document).ready(function($){
 
 			if (year < 1975){
 				console.log('ta damm');
-				$('#username').text(username);
-				$('#usermail').text(usermail);
-				$('#userphone').text(userphone);
-				$('#userpic').attr('src', userpic);
-				$('.usercard').show();
+				usercard(username, userpic, usermail, userphone);
 			} else {				
 				console.log('wait...');
 				randomUser();
@@ -33,24 +29,46 @@ jQuery(document).ready(function($){
 
 		return new Promise(function(resolve, reject) {
 
-			var xhr = new XMLHttpRequest();
-			xhr.open('GET', url, true);
+			// xhr
+			// var xhr = new XMLHttpRequest();
+			// xhr.open('GET', url, true);
 
-			xhr.onload = function() {
-				if (this.status == 200) {
-					resolve(this.response);
-				} else {
-					var error = new Error(this.statusText);
-					error.code = this.status;
-					reject(error);
-				}
-			};
+			// xhr.onload = function() {
+			// 	if (this.status == 200) {
+			// 		resolve(this.response);
+			// 	} else {
+			// 		var error = new Error(this.statusText);
+			// 		error.code = this.status;
+			// 		reject(error);
+			// 	}
+			// };
 
-			xhr.onerror = function() {
-				reject(new Error("Network Error"));
-			};
+			// xhr.onerror = function() {
+			// 	reject(new Error("Network Error"));
+			// };
 
-			xhr.send();
+			// xhr.send();
+
+			// fetch
+			fetch(url)
+				.then(response => {
+					if (response.status == 200) {
+							// тут ошибка?
+						response.json().then(data => {
+							resolve(data);
+			      })
+					} else {
+						var error = new Error(response.statusText);
+						error.code = response.status;
+						reject(error);
+					}
+
+		  	})
+				.catch(error => {
+					console.log('Fetch Error :-S', error);
+					reject(new Error("Network Error"));
+				});
+
 		});
 
 	}
@@ -69,11 +87,7 @@ jQuery(document).ready(function($){
 
 				if (year < 1975){
 					console.log('ta damm');
-					$('#username').text(username);
-					$('#usermail').text(usermail);
-					$('#userphone').text(userphone);
-					$('#userpic').attr('src', userpic);
-					$('.usercard').show();
+					usercard(username, userpic, usermail, userphone);
 				} 
 				else {
 					console.log('wait...');
@@ -83,6 +97,8 @@ jQuery(document).ready(function($){
 			.catch(error => {
 		    alert(error); // Error: Not Found
 		  });
+
+		  // сделать: промис в запросе передавать аргумент (сид)
 	}
 
 	$('#RandomUser').bind('click', function(){
@@ -94,3 +110,11 @@ jQuery(document).ready(function($){
 
 
 });
+
+function usercard(name, img, email, phone) {	
+	$('#username').text(name);
+	$('#usermail').text(email);
+	$('#userphone').text(phone);
+	$('#userpic').attr('src', img);
+	$('.usercard').show();
+}
