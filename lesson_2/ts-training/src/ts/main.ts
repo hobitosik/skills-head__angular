@@ -36,39 +36,17 @@ class Users {
 	public randomUserPromise(): Promise<IUser> {
 
 		let usersObtained: Array<IUser> = [];
+		let usersList = new RenderableList<IUser>();
 		
 		return new Promise((resolve) => {
-
-			
-			const RenderableList = <GUser>(user: IUser): Array<IUser> => {
-				
-				const addList = (user: IUser) => {
-					usersObtained.push(user);
-					return usersObtained;
-				}
-			
-				const renderList = (usersObtained: Array<IUser>) => {	
-					let compareRandom = (a: IUser, b: IUser) => {
-						return Math.random() - 0.5;
-					}
-					usersObtained.sort(compareRandom);
-					return usersObtained;
-				}
-			
-				const clearList = (usersObtained: Array<IUser>) => {
-					usersObtained = [];
-					return usersObtained;
-				}
-			
-				return usersObtained;
-			}
 	
 			this.httpGet('https://randomuser.me/api/')
 				.then((user: IUser) => {
 					// console.log(user);
 
 					// добавить юзера в массив
-					// RenderableList.addList(user);
+					usersObtained = usersList.addList(user);
+					console.log('Add user: ' + JSON.stringify(usersObtained));
 	
 					let year: number = + user.dob.slice(0, 4);
 	
@@ -81,12 +59,16 @@ class Users {
 						this.usercard(username, userpic, usermail, userphone);
 
 						// очистить массив юзеров
+						usersObtained = usersList.clearList();						
+						console.log('Clear list: ' + JSON.stringify(usersObtained));
 					} 
 					else {
 						console.log('wait...');
-						this.httpGet('https://randomuser.me/api/');
+						this.randomUserPromise();
 
 						// отрендерить массив юзеров
+						usersObtained = usersList.renderList();
+						console.log('Render List: ' + JSON.stringify(usersObtained));
 					}
 	
 				})
@@ -107,6 +89,29 @@ class Users {
 	}
 }
 
+class RenderableList<GUser> {
+	
+	private usersObtained: Array<GUser> = [];
+	
+	public addList = (user: GUser) : Array<GUser> => {
+		this.usersObtained.push(user);
+		return this.usersObtained;
+	}
+
+	public renderList = () : Array<GUser> => {	
+		let compareRandom = (a: GUser, b: GUser) => {
+			return Math.random() - 0.5;
+		}
+		this.usersObtained.sort(compareRandom);
+		return this.usersObtained;
+	}
+
+	public clearList = () : Array<GUser> => {
+		this.usersObtained = [];
+		return this.usersObtained;
+	}
+
+}
 
 let users = new Users();
 
