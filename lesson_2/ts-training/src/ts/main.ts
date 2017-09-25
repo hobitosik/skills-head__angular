@@ -15,7 +15,7 @@ interface IUser {
 
 class Users {
 
-	private httpGet(url: string) {
+	private httpGet(url: string): Promise<IUser> {
 		
 		return fetch(url)
 			.then((response) => {
@@ -29,6 +29,7 @@ class Users {
 			})
 			.catch(error => {
 				console.log('Fetch Error :-S', error);
+				return null;
 			});
 		
 	}
@@ -46,7 +47,7 @@ class Users {
 
 					// добавить юзера в массив
 					usersObtained = usersList.addList(user);
-					console.log('Add user: ' + JSON.stringify(usersObtained));
+					console.log('Add user: ' , usersObtained);
 	
 					let year: number = + user.dob.slice(0, 4);
 	
@@ -60,7 +61,7 @@ class Users {
 
 						// очистить массив юзеров
 						usersObtained = usersList.clearList();						
-						console.log('Clear list: ' + JSON.stringify(usersObtained));
+						console.log('Clear list: ' , usersObtained);
 					} 
 					else {
 						console.log('wait...');
@@ -68,7 +69,7 @@ class Users {
 
 						// отрендерить массив юзеров
 						usersObtained = usersList.renderList();
-						console.log('Render List: ' + JSON.stringify(usersObtained));
+						console.log('Render List: ' , usersObtained);
 					}
 	
 				})
