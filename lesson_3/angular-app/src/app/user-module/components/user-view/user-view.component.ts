@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { IUser, UserServiceService } from '../../services/user-service.service';
 
 @Component({
@@ -8,14 +8,23 @@ import { IUser, UserServiceService } from '../../services/user-service.service';
 })
 export class UserViewComponent implements OnInit {
 
-  public nguserview: Promise<IUser | void>;
+  @Input()
+  public users: IUser[];
 
-  constructor(private userviews: UserServiceService) {
-    this.nguserview = this.userviews.getUsers()
-      .then((nguserview) => {
-        console.log(nguserview);
-      });
-  }
+  constructor() {}
+
+  // private userview: Promise<Array<IUser> | void>;
+  // private ngusers: IUser[];
+
+  // constructor(private userviews: UserServiceService) {
+  //   this.userview = this.userviews.getUsers()
+  //     .then((users) => {
+  //       // console.log(users);
+  //       this.ngusers = users;
+  //       // console.log('users', users);
+  //       console.log('ngusers', this.ngusers);
+  //     });
+  // }
 
   public ngOnInit() {
     console.log('On inited');

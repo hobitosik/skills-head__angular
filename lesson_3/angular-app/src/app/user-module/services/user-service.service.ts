@@ -20,6 +20,8 @@ export class UserServiceService {
 
   constructor() { }
 
+  private obtainedUsers: IUser[] = [];
+
   private httpGet(url: string): Promise<IUser> {
 
     return fetch(url)
@@ -39,28 +41,30 @@ export class UserServiceService {
 
   }
 
-  public getUsers(): Promise<IUser> {
+  public getUsers(): Promise<Array<IUser>> {
 
-    return new Promise((resolve) => {
-
+    return new Promise((resolve, reject) => {
       this.httpGet('https://randomuser.me/api/')
         .then((user: IUser) => {
-          // console.log(user);
+
+          this.obtainedUsers.push(user);
 
           const year: number = + user.dob.slice(0, 4);
 
           if (year < 1975) {
             console.log('ta damm');
 
-            resolve(user);
+            resolve(this.obtainedUsers);
           } else {
             console.log('wait...');
             this.getUsers();
           }
 
+          return this.obtainedUsers;
         })
         .catch(error => {
           alert(error); // Error: Not Found
+          reject(error);
         });
 
     });

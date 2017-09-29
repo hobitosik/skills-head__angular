@@ -4,6 +4,7 @@ import { UsersGeneratorComponent } from './components/users-generator/users-gene
 import { UserViewComponent } from './components/user-view/user-view.component';
 import { DateFormatPipe } from './pipes/date-format.pipe';
 import { UserServiceService } from './services/user-service.service';
+import { PictureSizesDirective } from './directives/picture-sizes.directive';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { UserServiceService } from './services/user-service.service';
   declarations: [
     UsersGeneratorComponent,
     UserViewComponent,
-    DateFormatPipe
+    DateFormatPipe,
+    PictureSizesDirective
   ],
   exports: [
     UsersGeneratorComponent,

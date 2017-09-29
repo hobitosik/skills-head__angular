@@ -4,6 +4,7 @@
 
 <button class="btn btn-default">Загрузить Юзеров</button>
 
-<ul>
-  <li></li>
+<ul class="users">
+    <app-user-view *ngFor="let user of ngusers" [users]="ngusers"></app-user-view>
+    <!-- <app-user-view></app-user-view> -->
 </ul>
