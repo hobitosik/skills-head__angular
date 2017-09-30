@@ -2,9 +2,8 @@
   users-generator works!
 </p>
 
-<button class="btn btn-default">Загрузить Юзеров</button>
+<button type="button"class="btn btn-default" [disabled]="isDisabled" (click)="loadUsers()">Загрузить Юзеров</button>
 
 <ul class="users">
-    <app-user-view *ngFor="let user of ngusers" [users]="ngusers"></app-user-view>
-    <!-- <app-user-view></app-user-view> -->
+    <app-user-view [user]="nguser" *ngFor="let nguser of ngusers"></app-user-view>
 </ul>

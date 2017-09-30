@@ -20,15 +20,13 @@ export class UserServiceService {
 
   constructor() { }
 
-  private obtainedUsers: IUser[] = [];
+  private httpGet(): Promise<IUser> {
 
-  private httpGet(url: string): Promise<IUser> {
-
-    return fetch(url)
+    return fetch('https://randomuser.me/api/')
       .then((response) => {
         return response.json()
           .then((
-            data: {results: IUser[]}
+            data: { results: IUser[] }
           ) => {
             return data.results[0];
           });
@@ -43,30 +41,26 @@ export class UserServiceService {
 
   public getUsers(): Promise<Array<IUser>> {
 
-    return new Promise((resolve, reject) => {
-      this.httpGet('https://randomuser.me/api/')
-        .then((user: IUser) => {
+    const obtainedUsers: IUser[] = [];
 
-          this.obtainedUsers.push(user);
+    return new Promise((resolve) => {
 
-          const year: number = + user.dob.slice(0, 4);
+      const filter = (user: IUser) => {
+        obtainedUsers.push(user);
 
-          if (year < 1975) {
-            console.log('ta damm');
+        const year: number = + user.dob.slice(0, 4);
 
-            resolve(this.obtainedUsers);
-          } else {
-            console.log('wait...');
-            this.getUsers();
-          }
+        if (year < 1975) {
+          console.log('ta damm');
+          resolve(obtainedUsers);
+        } else {
+          console.log('wait...');
+          this.httpGet().then(filter);
+        }
+      };
 
-          return this.obtainedUsers;
-        })
-        .catch(error => {
-          alert(error); // Error: Not Found
-          reject(error);
-        });
-
+      this.httpGet()
+        .then(filter);
     });
 
   }

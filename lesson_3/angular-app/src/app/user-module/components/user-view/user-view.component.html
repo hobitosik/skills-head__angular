@@ -1,12 +1,11 @@
 <li class="usercard container">
-  <p>user-view component</p>
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <div><img src="{{ user?.picture.medium }}" alt="" appPictureSizes /></div>
+      <div><img src="{{ user.picture.medium }}" alt="" /></div>
       <h2>{{ user.name.first }} {{ user.name.last }}</h2>
       <p>
-        <a href="mailto:{{ user?.email }}">{{ user?.email }}</a> <br>
-        <span>{{ user?.phone }}</span>
+        <a href="mailto: {{ user.email }}">{{ user.email }}</a> <br>
+        <span>{{ user.phone }}</span>
       </p>
     </div>
   </div>

@@ -9,18 +9,24 @@ import { IUser, UserServiceService } from '../../services/user-service.service';
 })
 export class UsersGeneratorComponent implements OnInit {
 
-  private userview: Promise<Array<IUser> | void>;
-  private ngusers: IUser[];
+  public userview: Promise<Array<IUser> | void>;
+  public ngusers: IUser[];
+  public isDisabled: boolean = false;
 
   constructor(private userviews: UserServiceService) {
+    // this.loadUsers();
+  }
+
+  public loadUsers() {
     this.userview = this.userviews.getUsers()
       .then((users) => {
         this.ngusers = users;
         console.log('ngusers', this.ngusers);
-      });
+    });
   }
 
   ngOnInit() {
+    console.log('Generator component inited');
   }
 
 }
