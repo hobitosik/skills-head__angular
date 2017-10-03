@@ -10,11 +10,14 @@ export class UserViewComponent implements OnInit {
 
   @Input()
   public user: IUser;
+  public imgs: Array<string>;
 
   @Output()
   public onUserDelete = new EventEmitter();
 
   constructor() {}
+
+  private pathValues: Array<string> = [];
 
   public deleteUser(id: string) {
     this.onUserDelete.emit(this.user);
@@ -22,7 +25,14 @@ export class UserViewComponent implements OnInit {
   }
 
   public ngOnInit() {
-    // console.log('On inited');
+    for (const key in this.user.picture) {
+      if (this.user.picture.hasOwnProperty(key)) {
+        const value: string = this.user.picture[key];
+        this.pathValues.push(value);
+      }
+    }
+    this.imgs = this.pathValues;
+    console.log(this.imgs);
   }
 
 }

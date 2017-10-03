@@ -1,7 +1,7 @@
 <li class="usercard container">
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <div><img src="{{ user.picture.medium }}" alt="" appPictureSizes /></div>
+      <div><img src="{{ imgs[0] }}" alt="" appPictureSizes [imgs]='imgs' /></div>
       <h2>Username: {{ user.name.first }} {{ user.name.last }}</h2>
       <p>
         Email: <a href="mailto: {{ user.email }}">{{ user.email }}</a> <br>
