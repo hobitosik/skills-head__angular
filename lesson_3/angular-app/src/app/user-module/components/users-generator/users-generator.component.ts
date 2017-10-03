@@ -18,15 +18,27 @@ export class UsersGeneratorComponent implements OnInit {
   }
 
   public loadUsers() {
+    this.isDisabled = true;
+
     this.userview = this.userviews.getUsers()
       .then((users) => {
         this.ngusers = users;
-        console.log('ngusers', this.ngusers);
-    });
+        this.isDisabled = false;
+      })
+      .catch(error => {
+        console.log('Error:', error);
+        this.isDisabled = false;
+      });
+  }
+
+  public removeUser(e) {
+    const indexArr: number = this.ngusers.indexOf(e);
+    this.ngusers.splice(indexArr, 1);
+    console.log('Remove', e);
   }
 
   ngOnInit() {
-    console.log('Generator component inited');
+    // console.log('Generator component inited');
   }
 
 }

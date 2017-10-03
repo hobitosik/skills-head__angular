@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 export interface IUser {
+  cell: string;
   dob: string;
   email: string;
   picture: {
