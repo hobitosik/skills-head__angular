@@ -7,7 +7,8 @@
         Email: <a href="mailto: {{ user.email }}">{{ user.email }}</a> <br>
         <span>Phone: {{ user.phone }}</span>
       </p>
-      <p>Birthday: {{ user.dob }}</p>
+      <p>Birthday: {{ user.dob | dateFormat: 'medium' }}</p>
+       <!-- short|medium|long -->
       <button type="button" (click)="deleteUser(user.cell);">Delete user</button>
     </div>
   </div>
