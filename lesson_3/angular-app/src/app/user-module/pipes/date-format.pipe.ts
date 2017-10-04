@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DateFormatPipe implements PipeTransform {
 
-  transform(value: string, format: any): any {
+  transform(value: string, format?: string): string {
     // 1982-09-20 10:56:23 - приходит
     // DD-MM-YYYY HH:mm - надо
     const date = new Date(value);
@@ -23,13 +23,11 @@ export class DateFormatPipe implements PipeTransform {
       'Desember'
     ];
 
-    let resultFormat: string;
+    let resultFormat: string = day + ' ' + monthArr[month] + ' ' + year + ' ' + hour + ':' + minute;
     if (format === 'short') {
       resultFormat = day + '/' + month + '/' + year;
     } else if (format === 'medium') {
       resultFormat = day + ' ' + monthArr[month] + ' ' + year;
-    } else {
-      resultFormat = day + ' ' + monthArr[month] + ' ' + year + ' ' + hour + ':' + minute;
     }
 
     return resultFormat;
