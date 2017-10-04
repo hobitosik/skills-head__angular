@@ -11,7 +11,7 @@ export class UsersGeneratorComponent implements OnInit {
 
   public userview: Promise<Array<IUser> | void>;
   public ngusers: IUser[];
-  public isDisabled: boolean = false;
+  public isDisabled = false;
 
   constructor(private userviews: UserServiceService) {
     // this.loadUsers();

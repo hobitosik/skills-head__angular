@@ -1,4 +1,4 @@
-<button type="button"class="btn btn-default" [disabled]="isDisabled" (click)="loadUsers()">Загрузить Юзеров</button>
+<button type="button"class="btn btn-default" [disabled]="isDisabled" (onConfirm)="loadUsers($event)" appConfirm >Загрузить Юзеров</button>
 
 <ul class="users">
     <app-user-view [user]="nguser" *ngFor="let nguser of ngusers" (onUserDelete)="removeUser($event);"></app-user-view>
