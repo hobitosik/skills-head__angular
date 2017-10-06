@@ -1,0 +1,11 @@
+<div class="slider-wrapper">
+  <div class="arrow-left slider-control-btn" (click)="scrolLeft(slider)">&lt;</div>
+  
+  <div class="slider-content">
+    <div class="slider-list" #slider>
+      <app-slider-item class="slider-item" *ngFor="let item of items"></app-slider-item>
+    </div>
+  </div>
+  
+  <div class="arrow-right slider-control-btn" (click)="scrolRight(slider)">&gt;</div>
+</div>
