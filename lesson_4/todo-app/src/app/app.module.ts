@@ -1,8 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { SliderModuleModule } from './slider-module/slider-module.module';
+import { CommonModuleModule } from './common/common-module.module';
+
+import { TagsService } from './common/services/tags.service';
+
+export const appTagsFactory = (tags) => {
+  console.log(tags);
+  return () => {
+    return new Promise<any>((resolve) => {
+      console.log('waiting');
+      setTimeout(resolve, 2000);
+    });
+  };
+};
 
 @NgModule({
   declarations: [
@@ -10,9 +22,11 @@ import { SliderModuleModule } from './slider-module/slider-module.module';
   ],
   imports: [
     BrowserModule,
-    SliderModuleModule
+    CommonModuleModule
   ],
-  providers: [],
+  providers: [
+    { provide: APP_INITIALIZER, useFactory: appTagsFactory, deps: [TagsService], multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
