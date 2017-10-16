@@ -1,0 +1,16 @@
+.status {
+  overflow: hidden;
+  padding: 5px;
+}
+
+.status.open {
+  background: lightpink;
+}
+
+.status.progress {
+  background: lightblue;
+}
+
+.status.close {
+  background: lightgreen;
+}

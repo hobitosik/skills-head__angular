@@ -1,0 +1,28 @@
+{
+  "tags": [{
+    "key1": "html/css",
+    "key2": "angular2",
+    "key3": "js"
+  },
+  {    
+    "key1": "php",
+    "key2": "c#",
+    "key3": "java"
+  },
+  {
+    "key1": "photoshop",
+    "key2": "illustrator",
+    "key3": "corel draw"
+  }]
+}
+// {
+//   "results": [
+//     "html/css",
+//     "angular2",
+//     "js",
+//     "php",
+//     "c#",
+//     "photoshop",
+//     "corel draw"
+//   ]
+// }

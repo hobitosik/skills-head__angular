@@ -1,0 +1,58 @@
+* {
+  box-sizing: border-box;
+}
+
+.slider-wrapper {
+  position: relative;
+  padding: 80px;
+}
+
+.slider-control-btn {
+  position: absolute;
+  top: 50%;
+  margin-top: -20px;
+  width: 40px;
+  height: 40px;
+  background: gray;
+  border-radius: 50%;
+  line-height: 40px;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+}
+
+.arrow-left {
+  left: 20px;
+}
+
+.arrow-right {
+  right: 20px;
+}
+
+.slider-content {
+  border: 1px solid;
+  padding: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.slider-list {
+  position: relative;
+  left: 0;
+  transition: all 1s ease .5s;
+}
+
+.slider-item {
+  display: inline-block;
+  width: 29.3%;
+  margin: 2%;
+  background: lightblue;
+  white-space: normal;
+}
+
+app-edit-tiket {
+  display: inline-block;
+  margin: 20px 10px;
+}

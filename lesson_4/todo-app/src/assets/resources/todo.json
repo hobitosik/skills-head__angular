@@ -1,0 +1,54 @@
+{
+  "tikets": [
+    {
+      "id": "1",
+      "title": "First tiket",
+      "description": "First tiket description, lorem ipsum bla bla bla",
+      "status": "open",
+      "tags": [
+        "html/css",
+        "angular2"
+      ]
+    },
+    {      
+      "id": "2",
+      "title": "Second tiket",
+      "description": "Second tiket description, lorem ipsum bla bla bla",
+      "status": "in progress",
+      "tags": [
+        "html/css",
+        "angular2"
+      ]
+    },
+    {      
+      "id": "3",
+      "title": "Third tiket",
+      "description": "Third tiket description, lorem ipsum bla bla bla",
+      "status": "close",
+      "tags": [
+        "html/css",
+        "js"
+      ]
+    },
+    {      
+      "id": "4",
+      "title": "Fourth tiket",
+      "description": "Fourth tiket description, lorem ipsum bla bla bla",
+      "status": "close",
+      "tags": [
+        "html/css",
+        "js"
+      ]
+    },
+    {      
+      "id": "5",
+      "title": "Fifth tiket",
+      "description": "Fifth tiket description, lorem ipsum bla bla bla",
+      "status": "open",
+      "tags": [
+        "html/css",
+        "js"
+      ]
+    }
+  ]
+}

@@ -5,14 +5,12 @@ import { AppComponent } from './app.component';
 import { CommonModuleModule } from './common/common-module.module';
 
 import { TagsService } from './common/services/tags.service';
+import { TodoItemsService } from './common/services/todo-items.service';
 
-export const appTagsFactory = (tags) => {
-  console.log(tags);
+export const appFactory = (tags: TagsService, todos: TodoItemsService) => {
   return () => {
-    return new Promise<any>((resolve) => {
-      console.log('waiting');
-      setTimeout(resolve, 2000);
-    });
+    tags.getTags();
+    todos.getTodos();
   };
 };
 
@@ -25,7 +23,7 @@ export const appTagsFactory = (tags) => {
     CommonModuleModule
   ],
   providers: [
-    { provide: APP_INITIALIZER, useFactory: appTagsFactory, deps: [TagsService], multi: true }
+    { provide: APP_INITIALIZER, useFactory: appFactory, deps: [TagsService, TodoItemsService], multi: true }
   ],
   bootstrap: [AppComponent]
 })
