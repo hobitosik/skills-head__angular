@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ITiket } from '../services/todo-items.service';
 
+export interface IStatus {
+  id: string | number;
+  value: string;
+}
+
 @Injectable()
 export class TodoItemService {
 
@@ -14,6 +19,7 @@ export class TodoItemService {
     return this.tiket;
   }
 
+  // редактирование загруженной задачи (описание задачи, теги и статус) и сохранения.
   public setTiket(id, tiket) {
     localStorage.setItem(id, JSON.stringify(tiket));
   }

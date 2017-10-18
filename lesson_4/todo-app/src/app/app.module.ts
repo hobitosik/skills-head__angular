@@ -23,7 +23,8 @@ export const appFactory = (tags: TagsService, todos: TodoItemsService) => {
     CommonModuleModule
   ],
   providers: [
-    { provide: APP_INITIALIZER, useFactory: appFactory, deps: [TagsService, TodoItemsService], multi: true }
+    { provide: APP_INITIALIZER, useFactory: appFactory, deps: [TagsService, TodoItemsService], multi: true },
+    { provide: 'STATUS', useValue: {'1': 'открыто', '2': 'в процессе', '3': 'выполнено'}}
   ],
   bootstrap: [AppComponent]
 })

@@ -5,7 +5,7 @@
   
   <div class="slider-content">
     <div class="slider-list" #slider>
-      <app-slider-item  class="slider-item" *ngFor="let sltiket of sltikets" [tiket]="sltiket" (onTiketEdit)="editTiketS($event);" ></app-slider-item>
+      <app-slider-item #tiketItemComponent  class="slider-item" *ngFor="let sltiket of sltikets" [tiket]="sltiket" (click)="onTiketEdit();"></app-slider-item>
     </div>
   </div>
   

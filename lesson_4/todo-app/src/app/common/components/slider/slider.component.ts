@@ -1,7 +1,10 @@
-import { Component, OnInit, ElementRef, Renderer2, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2, ViewChildren, QueryList, Inject } from '@angular/core';
+
 import { SliderItemComponent } from '../slider-item/slider-item.component';
 import { EditTiketComponent } from '../edit-tiket/edit-tiket.component';
+
 import { ITiket, TodoItemsService } from '../../services/todo-items.service';
+import { IStatus, TodoItemService } from '../../services/todo-item.service';
 
 @Component({
   selector: 'app-slider',
@@ -10,8 +13,8 @@ import { ITiket, TodoItemsService } from '../../services/todo-items.service';
 })
 export class SliderComponent implements OnInit {
 
-  // @ViewChildren('tiketComponent')
-  // private editTiketComponent: QueryList<EditTiketComponent>;
+  @ViewChildren('tiketItemComponent')
+  private editTiketComponent: QueryList<EditTiketComponent>;
 
   public leftCSS = 0;
   public todoTikets: Promise<ITiket[] | void>;
@@ -20,20 +23,23 @@ export class SliderComponent implements OnInit {
   constructor(
     private el: ElementRef,
     private renderer: Renderer2,
-    private todoitems: TodoItemsService
+    private todoitems: TodoItemsService,
+    @Inject('STATUS') public status: Array<IStatus>
   ) {
     this.loadTikets();
+    console.log(this);
   }
 
   ngOnInit() {
     // console.log(this);
   }
 
-  // public onTiketEdit() {
-  //   this.editTiketComponent.forEach((item) => {
-  //     // item.editTiket();
-  //   });
-  // }
+  public onTiketEdit() {
+    this.editTiketComponent.forEach((item) => {
+      item.editTiket();
+      // console.log(item);
+    });
+  }
 
   public editTiketS() {
     console.log('editTiketS');
