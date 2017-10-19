@@ -1,30 +1,32 @@
-import { Component, OnInit, ElementRef, Renderer2, ViewChildren, QueryList, Inject } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, Renderer2, ViewChildren, QueryList, Inject, InjectionToken } from '@angular/core';
 
 import { SliderItemComponent } from '../slider-item/slider-item.component';
 import { EditTiketComponent } from '../edit-tiket/edit-tiket.component';
 
 import { ITiket, TodoItemsService } from '../../services/todo-items.service';
-import { IStatus, TodoItemService } from '../../services/todo-item.service';
+import { TodoItemService } from '../../services/todo-item.service';
+
+export const statusToken = new InjectionToken<string>('STATUS');
 
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.css']
 })
-export class SliderComponent implements OnInit {
+export class SliderComponent implements OnInit, AfterViewInit {
 
   @ViewChildren('tiketItemComponent')
   private editTiketComponent: QueryList<EditTiketComponent>;
 
   public leftCSS = 0;
-  public todoTikets: Promise<ITiket[] | void>;
-  public sltikets: ITiket[];
+  public todoTikets: ITiket[];
+  public editForms: ITiket[]= [];
 
   constructor(
     private el: ElementRef,
     private renderer: Renderer2,
     private todoitems: TodoItemsService,
-    @Inject('STATUS') public status: Array<IStatus>
+    @Inject(statusToken) public status: any
   ) {
     this.loadTikets();
     console.log(this);
@@ -34,26 +36,22 @@ export class SliderComponent implements OnInit {
     // console.log(this);
   }
 
-  public onTiketEdit() {
-    this.editTiketComponent.forEach((item) => {
-      item.editTiket();
-      // console.log(item);
-    });
+  ngAfterViewInit() {
   }
 
-  public editTiketS() {
-    console.log('editTiketS');
+  public onTiketEdit(tiket: ITiket) {
+    // this.editTiketComponent.forEach((item) => {
+    //   console.log(item);
+    //   item.editTiket();
+    // });
+    this.editForms.push(tiket);
   }
 
   public loadTikets() {
-    this.todoTikets = this.todoitems.getTodos()
-      .then((tikets) => {
-        console.log(tikets);
-        this.sltikets = tikets;
-      })
-      .catch((error) => {
-        console.log('Error: ', error);
-      });
+    if (this.todoitems !== null) {
+      this.todoTikets = this.todoitems.getTodos();
+    }
+    console.log(this.todoTikets);
   }
 
   public scrolLeft(slider) {
@@ -64,7 +62,7 @@ export class SliderComponent implements OnInit {
   }
 
   public scrolRight(slider) {
-    if (this.leftCSS !== (this.sltikets.length - 3) * 33) {
+    if (this.leftCSS !== (this.todoTikets.length - 3) * 33) {
       this.leftCSS = this.leftCSS + 33;
       this.renderer.setStyle(slider, 'left', '-' + this.leftCSS + '%');
     }

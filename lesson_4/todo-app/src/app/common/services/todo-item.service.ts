@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ITiket } from '../services/todo-items.service';
 
-export interface IStatus {
-  id: string | number;
-  value: string;
-}
-
 @Injectable()
 export class TodoItemService {
 
@@ -23,5 +18,11 @@ export class TodoItemService {
   public setTiket(id, tiket) {
     localStorage.setItem(id, JSON.stringify(tiket));
   }
+
+  // private setLocalStorage(tikets) {
+  //   for (const tiket of tikets) {
+  //     localStorage.setItem(tiket.id, JSON.stringify(tiket));
+  //   }
+  // }
 
 }

@@ -1,11 +1,11 @@
-<app-edit-tiket *ngFor="let sltiket of sltikets"></app-edit-tiket>
+<app-edit-tiket *ngFor="let editForm of editForms"></app-edit-tiket>
 
 <div class="slider-wrapper">
   <div class="arrow-left slider-control-btn" (click)="scrolLeft(slider)">&lt;</div>
   
   <div class="slider-content">
     <div class="slider-list" #slider>
-      <app-slider-item #tiketItemComponent  class="slider-item" *ngFor="let sltiket of sltikets" [tiket]="sltiket" (click)="onTiketEdit();"></app-slider-item>
+      <app-slider-item #tiketItemComponent  class="slider-item" *ngFor="let todoTiket of todoTikets" [tiket]="todoTiket" (click)="onTiketEdit();"></app-slider-item>
     </div>
   </div>
   

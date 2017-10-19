@@ -6,6 +6,7 @@ import { TodoItemService } from '../../services/todo-item.service';
   selector: 'app-edit-tiket',
   templateUrl: './edit-tiket.component.html',
   styleUrls: ['./edit-tiket.component.css'],
+  providers: [TodoItemService]
   // exportAs: 'editTiketComponent'
 })
 export class EditTiketComponent implements OnInit {

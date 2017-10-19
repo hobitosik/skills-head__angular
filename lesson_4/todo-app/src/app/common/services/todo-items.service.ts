@@ -14,37 +14,21 @@ export class TodoItemsService {
 
   constructor() { }
 
-  public getTodos(): Promise<ITiket[]> {
-    return new Promise((resolve) => {
-      fetch('http://localhost:4200/assets/resources/todo.json')
-        .then((responce) => {
-          return responce.json()
-            .then((
-              data: {tikets: ITiket[]}
-            ) => {
-              // console.log(data.tikets);
-              // console.log('загружать список задач из localStorage');
-              return data.tikets;
-            })
-            .then((tikets) => {
-              this.setLocalStorage(tikets);
-              resolve(tikets);
-            })
-            .catch((error) => {
-              console.log('Todo items fetch error: ', error);
-            });
-        });
-    });
-  }
+  public getTodos(): ITiket[] {
 
-  private setLocalStorage(tikets) {
-    for ( const tiket of tikets) {
-      localStorage.setItem(tiket.id, JSON.stringify(tiket));
+    const todos: ITiket[] = [];
+
+    if (typeof localStorage === 'object') {
+
+      Object.keys(localStorage).forEach(function (key) {
+        const item: ITiket = JSON.parse(localStorage.getItem(key));
+        todos.push(item);
+      });
+
+      // console.log(todos);
     }
-  }
 
-  private getLocalStorage() {
-    // console.log('get localStorage');
+    return todos;
   }
 
 }
