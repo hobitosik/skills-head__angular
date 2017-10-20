@@ -23,7 +23,8 @@ export const statusObj = {1: 'открыто', 2: 'в процессе', 3: 'в�
   ],
   declarations: [SliderComponent, SliderItemComponent, EditTiketComponent],
   exports: [
-    SliderComponent
+    SliderComponent,
+    EditTiketComponent
   ]
 })
 export class CommonModuleModule { }

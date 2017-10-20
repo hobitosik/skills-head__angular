@@ -1,3 +1,7 @@
+.list-item {
+  padding: 5px;
+  border: 1px solid #ddd;
+}
 .form-item {
   margin-bottom: 10px;
 }

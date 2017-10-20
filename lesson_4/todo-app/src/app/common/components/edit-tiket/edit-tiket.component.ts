@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ITiket } from '../../services/todo-items.service';
 import { TodoItemService } from '../../services/todo-item.service';
 
@@ -7,12 +7,13 @@ import { TodoItemService } from '../../services/todo-item.service';
   templateUrl: './edit-tiket.component.html',
   styleUrls: ['./edit-tiket.component.css'],
   providers: [TodoItemService]
-  // exportAs: 'editTiketComponent'
 })
 export class EditTiketComponent implements OnInit {
 
-  // @Output()
-  // private onTiketEdit = new EventEmitter();
+  @Input()
+  public editTiket: ITiket;
+
+  private tiketChanged: ITiket;
 
   constructor(
     private todoitem: TodoItemService
@@ -28,9 +29,16 @@ export class EditTiketComponent implements OnInit {
     // console.log('getTodoItem');
   }
 
-  public editTiket() {
-    // this.onTiketEdit.emit(this);
-    console.log('edit tiket');
+  public saveFormValues(editTiket: ITiket, titleTiket, descriptionTiket, statusTiket) {
+    // console.log('до изменения', editTiket);
+
+    editTiket.title = titleTiket.value;
+    editTiket.description = descriptionTiket.value;
+    editTiket.status = statusTiket.value;
+
+    // console.log('после изменения', editTiket);
+
+    this.todoitem.setTiket(editTiket.id, editTiket);
   }
 
 }

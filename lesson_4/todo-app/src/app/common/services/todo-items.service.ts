@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 // import { get, set } from 'lockr';
 
 export interface ITiket {
-  id: number;
+  id: string;
   title: string;
   description: string;
   status: string;
@@ -20,7 +20,7 @@ export class TodoItemsService {
 
     if (typeof localStorage === 'object') {
 
-      Object.keys(localStorage).forEach(function (key) {
+      Object.keys(localStorage).forEach((key: string) => {
         const item: ITiket = JSON.parse(localStorage.getItem(key));
         todos.push(item);
       });

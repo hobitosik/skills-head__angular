@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ElementRef, Renderer2, ViewChildren, QueryList, Inject, InjectionToken } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2, ViewChildren, QueryList, Inject, InjectionToken } from '@angular/core';
 
 import { SliderItemComponent } from '../slider-item/slider-item.component';
 import { EditTiketComponent } from '../edit-tiket/edit-tiket.component';
@@ -13,14 +13,14 @@ export const statusToken = new InjectionToken<string>('STATUS');
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.css']
 })
-export class SliderComponent implements OnInit, AfterViewInit {
+export class SliderComponent implements OnInit {
 
   @ViewChildren('tiketItemComponent')
   private editTiketComponent: QueryList<EditTiketComponent>;
 
   public leftCSS = 0;
   public todoTikets: ITiket[];
-  public editForms: ITiket[]= [];
+  public editForms: ITiket[] = [];
 
   constructor(
     private el: ElementRef,
@@ -29,22 +29,27 @@ export class SliderComponent implements OnInit, AfterViewInit {
     @Inject(statusToken) public status: any
   ) {
     this.loadTikets();
-    console.log(this);
+    // console.log(this);
   }
 
   ngOnInit() {
     // console.log(this);
   }
 
-  ngAfterViewInit() {
-  }
-
   public onTiketEdit(tiket: ITiket) {
+
+    const OPEN_EDIT_TIKETS = 3;
+
+    if (this.editForms.length === OPEN_EDIT_TIKETS) {
+      this.editForms.splice(0, 1);
+    }
+
+    this.editForms.push(tiket);
+
     // this.editTiketComponent.forEach((item) => {
     //   console.log(item);
     //   item.editTiket();
     // });
-    this.editForms.push(tiket);
   }
 
   public loadTikets() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ITiket } from '../../services/todo-items.service';
 
 @Component({
@@ -10,9 +10,6 @@ export class SliderItemComponent implements OnInit {
 
   @Input()
   public tiket: ITiket;
-
-  // @Output()
-  // public onTiketEdit = new EventEmitter();
 
   constructor() { }
 

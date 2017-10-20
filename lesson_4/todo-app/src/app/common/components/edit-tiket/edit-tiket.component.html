@@ -1,20 +1,22 @@
-<div class="list">
-  <div class="list-item">
-    <form action="#">
-      <div class="form-item">
-        <input type="text" name="title" placeholder="edit title tiket" />
-      </div>
-      <div class="form-item">
-        <textarea name="desc" id="" cols="30" rows="10" placeholder="edit description tiket"></textarea>
-      </div>
-      <div class="form-item">
-        <select name="status" id="">
-          <option value="open">open</option>
-          <option value="progress">in progress</option>
-          <option value="close">close</option>
-        </select>
-      </div>
-      <div><button type="button">Сохранить</button></div>
-    </form>
-  </div>
+<div class="list-item">
+  <form action="#">
+    <h2>Редактирование задачи № {{ editTiket.id }}</h2>
+    <div class="form-item">
+      <label for="">Заголовок задачи</label>
+      <input #titleTiket type="text" name="title" placeholder="edit title tiket" value="{{ editTiket.title }}" />
+    </div>
+    <div class="form-item">
+      <label for="">Описание задачи</label>
+      <textarea #descriptionTiket name="desc" id="" cols="30" rows="5" placeholder="edit description tiket"> {{ editTiket.description }}</textarea>
+    </div>
+    <div class="form-item">
+      <label for="">Статус</label>
+      <select name="status" id="" #statusTiket  value="{{ editTiket.status }}">
+        <option value="open">open</option>
+        <option value="in progress">in progress</option>
+        <option value="close">close</option>
+      </select>
+    </div>
+    <div><button type="button" (click)="saveFormValues(editTiket, titleTiket, descriptionTiket, statusTiket);">Сохранить</button></div>
+  </form>
 </div>
