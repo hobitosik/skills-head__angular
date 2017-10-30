@@ -26,7 +26,6 @@ export class EditTiketComponent implements OnInit {
 
   public getTodoItem(id: string) {
     this.todoitem.getTiket(id);
-    // console.log('getTodoItem');
   }
 
   public saveFormValues(editTiket: ITiket, titleTiket, descriptionTiket, statusTiket) {
