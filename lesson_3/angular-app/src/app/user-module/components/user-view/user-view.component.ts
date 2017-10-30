@@ -17,6 +17,7 @@ export class UserViewComponent implements OnInit {
 
   constructor() {}
 
+  // можно обойтись без нее
   private pathValues: Array<string> = [];
 
   public deleteUser(id: string) {

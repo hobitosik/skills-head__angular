@@ -18,6 +18,7 @@ export class UsersGeneratorComponent implements OnInit {
   }
 
   public loadUsers() {
+    // if в процессе то просто ретурн, на сулчай если метод дергает не только кнопка
     this.isDisabled = true;
 
     this.userview = this.userviews.getUsers()
