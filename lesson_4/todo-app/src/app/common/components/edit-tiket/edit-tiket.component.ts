@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ITiket } from '../../services/todo-items.service';
 import { TodoItemService } from '../../services/todo-item.service';
 
@@ -8,36 +8,28 @@ import { TodoItemService } from '../../services/todo-item.service';
   styleUrls: ['./edit-tiket.component.css'],
   providers: [TodoItemService]
 })
-export class EditTiketComponent implements OnInit {
+export class EditTiketComponent implements OnInit{
 
   @Input()
-  public editTiket: ITiket;
+  public inputTiket: ITiket;
 
-  private tiketChanged: ITiket;
+  @Output()
+  public onSaveSuccess = new EventEmitter();
+
+  private editTiket: ITiket;
 
   constructor(
     private todoitem: TodoItemService
   ) {
-    // this.getTodoItem();
   }
 
   ngOnInit() {
+    this.editTiket = this.todoitem.getTiket(this.inputTiket.id);
   }
 
-  public getTodoItem(id: string) {
-    this.todoitem.getTiket(id);
-  }
-
-  public saveFormValues(editTiket: ITiket, titleTiket, descriptionTiket, statusTiket) {
-    // console.log('до изменения', editTiket);
-
-    editTiket.title = titleTiket.value;
-    editTiket.description = descriptionTiket.value;
-    editTiket.status = statusTiket.value;
-
-    // console.log('после изменения', editTiket);
-
-    this.todoitem.setTiket(editTiket.id, editTiket);
+  public saveFormValues(editTiket: ITiket, titleTiket: string, descriptionTiket: string, statusTiket: string) {
+    this.todoitem.setTiket(editTiket, titleTiket, descriptionTiket, statusTiket);
+    this.onSaveSuccess.emit();
   }
 
 }

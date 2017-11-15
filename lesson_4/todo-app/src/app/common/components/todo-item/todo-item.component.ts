@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ITiket } from '../../services/todo-items.service';
 
 @Component({
-  selector: 'app-slider-item',
-  templateUrl: './slider-item.component.html',
-  styleUrls: ['./slider-item.component.css']
+  selector: 'app-todo-item',
+  templateUrl: './todo-item.component.html',
+  styleUrls: ['./todo-item.component.css']
 })
-export class SliderItemComponent implements OnInit {
+export class TodoItemComponent implements OnInit {
 
   @Input()
   public tiket: ITiket;

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-// import { get, set } from 'lockr';
 
 export interface ITiket {
-  id: string;
+  id: number;
   title: string;
   description: string;
   status: string;
@@ -12,23 +11,32 @@ export interface ITiket {
 @Injectable()
 export class TodoItemsService {
 
-  constructor() { }
+  private LocalTiketsArray: ITiket[];
+
+  constructor() {
+    this.LocalTiketsArray = [];
+  }
 
   public getTodos(): ITiket[] {
 
-    const todos: ITiket[] = [];
-
-    if (typeof localStorage === 'object') {
-
-      Object.keys(localStorage).forEach((key: string) => {
-        const item: ITiket = JSON.parse(localStorage.getItem(key));
-        todos.push(item);
-      });
-
-      // console.log(todos);
+    if (this.LocalTiketsArray.length === 0) { // ~~ this.LocalTiketsArray.length
+      this.updateLocalTiketsArray();
     }
 
-    return todos;
+    return this.LocalTiketsArray;
+  }
+
+  public updateLocalTiketsArray(): void {
+    // очищаем массив, pop удаляет крайний элемент массива. Он не будет равен Null, и undefinded
+    while (this.LocalTiketsArray.length > 0) {
+      this.LocalTiketsArray.pop();
+    }
+
+    if (typeof localStorage === 'object') {
+      JSON.parse(localStorage.getItem('todo')).forEach((item: ITiket) => {
+        this.LocalTiketsArray.push(item);
+      });
+    }
   }
 
 }

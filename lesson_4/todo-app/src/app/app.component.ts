@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SliderComponent } from './common/components/slider/slider.component';
+import { TodoComponent } from './common/components/todo/todo.component';
 // import { SliderItemComponent } from './common/components/slider-item/slider-item.component';
 
 @Component({

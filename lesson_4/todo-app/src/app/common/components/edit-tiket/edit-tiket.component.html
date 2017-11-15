@@ -1,5 +1,5 @@
 <div class="list-item">
-  <form action="#">
+  <form action="#" *ngIf="editTiket">
     <h2>Редактирование задачи № {{ editTiket.id }}</h2>
     <div class="form-item">
       <label for="">Заголовок задачи</label>
@@ -17,6 +17,6 @@
         <option value="close">close</option>
       </select>
     </div>
-    <div><button type="button" (click)="saveFormValues(editTiket, titleTiket, descriptionTiket, statusTiket);">Сохранить</button></div>
+    <div><button type="button" (click)="saveFormValues(editTiket, titleTiket.value, descriptionTiket.value, statusTiket.value);">Сохранить</button></div>
   </form>
 </div>

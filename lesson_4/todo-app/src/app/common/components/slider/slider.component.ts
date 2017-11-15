@@ -1,62 +1,29 @@
-import { Component, OnInit, ElementRef, Renderer2, ViewChildren, QueryList, Inject, InjectionToken } from '@angular/core';
-
-import { SliderItemComponent } from '../slider-item/slider-item.component';
-import { EditTiketComponent } from '../edit-tiket/edit-tiket.component';
-
-import { ITiket, TodoItemsService } from '../../services/todo-items.service';
-import { TodoItemService } from '../../services/todo-item.service';
-
-export const statusToken = new InjectionToken<string>('STATUS');
+import { Component, OnInit, AfterContentInit, ElementRef, Renderer2, ContentChildren, QueryList } from '@angular/core';
 
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.css']
 })
-export class SliderComponent implements OnInit {
+export class SliderComponent implements OnInit, AfterContentInit {
 
-  @ViewChildren('tiketItemComponent')
-  private editTiketComponent: QueryList<EditTiketComponent>;
+  @ContentChildren('tiketItemComponent', {read: ElementRef})
+  private items: QueryList<ElementRef>;
 
   public leftCSS = 0;
-  public todoTikets: ITiket[];
-  public editForms: ITiket[] = [];
 
   constructor(
     private el: ElementRef,
-    private renderer: Renderer2,
-    private todoitems: TodoItemsService,
-    @Inject(statusToken) public status: any
+    private renderer: Renderer2
   ) {
-    this.loadTikets();
     // console.log(this);
   }
 
   ngOnInit() {
-    // console.log(this);
   }
 
-  public onTiketEdit(tiket: ITiket) {
-
-    const OPEN_EDIT_TIKETS = 3;
-
-    if (this.editForms.length === OPEN_EDIT_TIKETS) {
-      this.editForms.splice(0, 1);
-    }
-
-    this.editForms.push(tiket);
-
-    // this.editTiketComponent.forEach((item) => {
-    //   console.log(item);
-    //   item.editTiket();
-    // });
-  }
-
-  public loadTikets() {
-    if (this.todoitems !== null) {
-      this.todoTikets = this.todoitems.getTodos();
-    }
-    console.log(this.todoTikets);
+  ngAfterContentInit() {
+    console.log(this);
   }
 
   public scrolLeft(slider) {
@@ -67,7 +34,7 @@ export class SliderComponent implements OnInit {
   }
 
   public scrolRight(slider) {
-    if (this.leftCSS !== (this.todoTikets.length - 3) * 33) {
+    if (this.leftCSS !== (this.items.length - 3) * 33) {
       this.leftCSS = this.leftCSS + 33;
       this.renderer.setStyle(slider, 'left', '-' + this.leftCSS + '%');
     }

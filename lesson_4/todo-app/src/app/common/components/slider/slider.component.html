@@ -1,11 +1,9 @@
-<app-edit-tiket [editTiket]="editForm" *ngFor="let editForm of editForms"></app-edit-tiket>
-
 <div class="slider-wrapper">
   <div class="arrow-left slider-control-btn" (click)="scrolLeft(slider)">&lt;</div>
   
   <div class="slider-content">
     <div class="slider-list" #slider>
-      <app-slider-item #tiketItemComponent  class="slider-item" *ngFor="let todoTiket of todoTikets" [tiket]="todoTiket" (click)="onTiketEdit(todoTiket);"></app-slider-item>
+      <ng-content></ng-content>
     </div>
   </div>
   

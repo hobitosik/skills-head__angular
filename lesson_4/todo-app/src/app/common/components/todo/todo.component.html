@@ -1,0 +1,5 @@
+<app-edit-tiket (onSaveSuccess)="loadTikets()" [inputTiket]="editForm" *ngFor="let editForm of editForms"></app-edit-tiket>
+
+<app-slider>
+  <app-todo-item #tiketItemComponent  class="slider-item" *ngFor="let todoTiket of todoTikets" [tiket]="todoTiket" (click)="onTiketEdit(todoTiket);"></app-todo-item> 
+</app-slider>
