@@ -64,7 +64,7 @@ export class TodoItemService {
 
     const todoTiketsArray: ITiket[] = JSON.parse(localStorage.getItem('todo'));
 
-    if (this.qItems !== todoTiketsArray.length) {
+    if (this.qItems === tiketChanged.id - 1) {
       todoTiketsArray.push(tiketChanged);
     } else {
       Object.assign(todoTiketsArray[tiketChanged.id - 1], tiketChanged);

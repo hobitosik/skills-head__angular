@@ -5,6 +5,8 @@ import { ITiket } from '../../../../interfaces/ITiket.interface';
 import { TodoItemService } from '../../services/todo-item.service';
 import { TodoItemsService } from '../../services/todo-items.service';
 
+import 'rxjs/Rx';
+
 @Component({
   selector: 'app-edit-todo-item',
   templateUrl: './edit-todo-item.component.html',
@@ -43,13 +45,24 @@ export class EditTodoItemComponent implements OnInit, OnDestroy {
         });
     }
 
+    // this.activatedRoute.paramMap.toPromise()
+    //   .then((params) => {
+    //     this.todoItemService.getTiket(Number(params.get('itemId')))
+    //       .then((item) => {
+    //         this.editTask = item;
+    //         console.log(this.editTask);
+    //       });
+    //   });
+
     this.activatedRoute.paramMap.subscribe((params) => {
       // console.log(params.get('itemId'));
-      this.todoItemService.getTiket(Number(params.get('itemId')))
-        .then((item) => {
-          this.editTask = item;
-          console.log(this.editTask);
-        });
+      if (this.itemId !== 'new') {
+        this.todoItemService.getTiket(Number(params.get('itemId')))
+          .then((item) => {
+            this.editTask = item;
+            console.log(this.editTask);
+          });
+      }
     });
   }
 
