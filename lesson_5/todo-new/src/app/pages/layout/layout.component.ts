@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UsersDataService } from '../../services/users-data.service';
+
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private usersDataService: UsersDataService
+  ) { }
 
   ngOnInit() {
+    this.usersDataService.getUsers();
   }
 
 }

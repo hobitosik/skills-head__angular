@@ -1,12 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Route } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { TodoModule } from './modules/todo/todo.module';
 
 import { UsersDataService } from './services/users-data.service';
 import { AuthGuardService } from './pages/login-container/services/authGuard.service';
 import { ExitNosaveGuardService } from './guards/exit-nosave-guard.service';
+import { NgVersionInterceptorService } from './services/ng-version-interceptor.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login-container/login/login.component';
@@ -41,13 +43,16 @@ export const routes: Route[] = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     TodoModule,
     RouterModule.forRoot(routes)
   ],
   providers: [
     UsersDataService,
     AuthGuardService,
-    ExitNosaveGuardService
+    ExitNosaveGuardService,
+    NgVersionInterceptorService,
+    { provide: HTTP_INTERCEPTORS, useClass: NgVersionInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })
