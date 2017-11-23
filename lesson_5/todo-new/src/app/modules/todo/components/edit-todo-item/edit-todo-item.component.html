@@ -1,0 +1,47 @@
+<div class="list-item">
+  <form action="#" *ngIf="editTask">
+    <h2>Редактирование задачи № {{ editTask.id }}</h2>
+    <div class="form-item">
+      <label for="">Заголовок задачи</label>
+      <input #titleTask type="text" name="title" placeholder="edit title task" value="{{ editTask.title }}" />
+    </div>
+    <div class="form-item">
+      <label for="">Описание задачи</label>
+      <textarea #descriptionTask name="desc" id="" cols="30" rows="5" placeholder="edit description task"> {{ editTask.description }}</textarea>
+    </div>
+    <div class="form-item">
+      <label for="">Статус</label>
+      <select name="status" id="" #statusTask value="{{ editTask.status }}">
+        <option value="open">open</option>
+        <option value="in progress">in progress</option>
+        <option value="close">close</option>
+      </select>
+    </div>
+    <div>
+      <button type="button" (click)="saveFormValues(editTask, titleTask.value, descriptionTask.value, statusTask.value);">Сохранить</button>
+    </div>
+  </form>
+
+  <form action="#" *ngIf="!editTask">
+    <h2>Новая задача № {{ qItems + 1 }}</h2>
+    <div class="form-item">
+      <label for="">Заголовок задачи</label>
+      <input #titleNewTask type="text" name="title" placeholder="Title task" value="" />
+    </div>
+    <div class="form-item">
+      <label for="">Описание задачи</label>
+      <textarea #descriptionNewTask name="desc" id="" cols="30" rows="5" placeholder="Description task"></textarea>
+    </div>
+    <div class="form-item">
+      <label for="">Статус</label>
+      <select name="status" id="" #statusNewTask value="">
+        <option value="open">open</option>
+        <option value="in progress">in progress</option>
+        <option value="close">close</option>
+      </select>
+    </div>
+    <div>
+      <button type="button" (click)="saveNewTask(titleNewTask.value, descriptionNewTask.value, statusNewTask.value);">Сохранить</button>
+    </div>
+  </form>
+</div>

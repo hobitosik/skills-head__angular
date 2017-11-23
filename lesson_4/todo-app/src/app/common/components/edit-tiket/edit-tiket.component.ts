@@ -8,7 +8,8 @@ import { TodoItemService } from '../../services/todo-item.service';
   styleUrls: ['./edit-tiket.component.css'],
   providers: [TodoItemService]
 })
-export class EditTiketComponent implements OnInit{
+
+export class EditTiketComponent implements OnInit {
 
   @Input()
   public inputTiket: ITiket;

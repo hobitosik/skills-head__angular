@@ -1,0 +1,6 @@
+<app-edit-todo-item (onSaveSuccess)="loadTikets()"></app-edit-todo-item>
+
+<app-slider>
+  <app-todo-item #sliderItem  class="slider-item" *ngFor="let todoTiket of todoTikets" [task]="todoTiket" (click)="goTiketEdit(todoTiket);"></app-todo-item> 
+</app-slider> 
+  

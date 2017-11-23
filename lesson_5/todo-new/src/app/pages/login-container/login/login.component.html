@@ -1,0 +1,16 @@
+<form action="#">
+  Please, log in!
+  <div class="field-box">
+    <input #loginValue type="text" placeholder="Login" />
+  </div>
+  <div class="field-box">
+    <input #passValue type="password" placeholder="password" />
+  </div>
+  <button type="button" (click)="onLogin(loginValue.value, passValue.value)">Log in</button>
+  <dl>
+    <dt>admin</dt>
+    <dd>qwerty</dd>
+    <dt>tester</dt>
+    <dd>12345</dd>
+  </dl>
+</form>

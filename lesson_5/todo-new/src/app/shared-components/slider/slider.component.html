@@ -1,0 +1,11 @@
+<div class="slider-wrapper">
+  <div class="arrow-left slider-control-btn" (click)="scrolLeft(slider)">&lt;</div>
+
+  <div class="slider-content">
+    <div class="slider-list" #slider>
+      <ng-content></ng-content>
+    </div>
+  </div>
+
+  <div class="arrow-right slider-control-btn" (click)="scrolRight(slider)">&gt;</div>
+</div>

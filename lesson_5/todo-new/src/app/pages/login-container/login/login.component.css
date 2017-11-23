@@ -1,0 +1,13 @@
+.field-box {
+  margin: 5px 0;
+}
+
+dl dt {
+  font-weight: bold;
+  float: left; 
+  clear: left;
+}
+
+dl dd {
+  float: left;
+}
