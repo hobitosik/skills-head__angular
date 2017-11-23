@@ -22,7 +22,7 @@ export class TodoItemService {
     // console.log(tiketsArray);
 
     for (let i = 0; i < tiketsArray.length ; i++) {
-      if (tiketsArray[i].id === id.toString()) {
+      if (tiketsArray[i].id === id) {
         this.todoTiket = tiketsArray[i];
         // console.log(this.todoTiket);
         return this.todoTiket;
@@ -33,7 +33,6 @@ export class TodoItemService {
 
   public newTiket(titleTiket?: string, descriptionTiket?: string, statusTiket?: string) {
     let idTiket: number = this.qItems + 1;
-    // условие ? значение1 : значение2
     let title: string = titleTiket ? titleTiket : '';
     let description: string = descriptionTiket ? descriptionTiket : '';
     let status: string = statusTiket ? statusTiket : 'open';
@@ -48,7 +47,6 @@ export class TodoItemService {
     };
 
     console.log('Новый тикет', this.todoTiket);
-    // return this.todoTiket;
 
     this.setTiket(this.todoTiket, title, description, status);
     console.log(this.todoItemsService.getTodos().length);

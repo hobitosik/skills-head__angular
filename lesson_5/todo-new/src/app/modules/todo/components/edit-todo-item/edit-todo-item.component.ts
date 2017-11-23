@@ -39,10 +39,8 @@ export class EditTodoItemComponent implements OnInit, OnDestroy {
 
     this.activatedRoute.paramMap.subscribe((params) => {
       // console.log(params.get('itemId'));
-      if (this.itemId !== 'new') {
-        this.editTask = this.todoItemService.getTiket(Number(params.get('itemId')));
-        // console.log(this.editTask);
-      }
+      this.editTask = this.todoItemService.getTiket(Number(params.get('itemId')));
+      // console.log(this.editTask);
     });
   }
 
