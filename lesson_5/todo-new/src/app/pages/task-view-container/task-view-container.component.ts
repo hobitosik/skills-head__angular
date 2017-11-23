@@ -48,10 +48,13 @@ export class TaskViewContainerComponent implements OnInit {
 
     // здесь мы берем полученный из сервиса массив задач, пробегаемся по нему, и каждому элементу создаем
     // клон. и этот клон записываем в новую коллекцию todoTikets
-    this.todoItemsService.getTodos().forEach(element => {
-      const item = Object.assign({}, element);
-      this.todoTikets.push(item);
-    });
+    this.todoItemsService.getTodos()
+      .then((todos) => {
+        todos.forEach(element => {
+          const item = Object.assign({}, element);
+          this.todoTikets.push(item);
+        });
+      });
   }
 
 }

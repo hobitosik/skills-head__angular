@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-// import { LoginService } from '../services/login.service';
 import { UsersDataService } from '../../../services/users-data.service';
 
 import { IUserData } from '../../../interfaces/IUserData.interface';
@@ -32,12 +31,6 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('login', login);
           console.log('login:', login, 'pass:', pass, 'Вход разрешен');
           this.router.navigate(['home']);
-          // this.router.resetConfig([
-          //   {path: 'login', redirectTo: 'home', },
-          //   // {path: '', redirectTo: 'home', pathMatch: 'full'},
-          //   { path: '**', redirectTo: 'home' },
-          //   ...this.router.config
-          // ]);
           break;
         } else {
           console.log('login:', login, 'pass:', pass, 'Доступ запрещен');

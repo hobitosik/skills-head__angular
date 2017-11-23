@@ -11,13 +11,13 @@ export class TodoItemsService {
     this.LocalTiketsArray = [];
   }
 
-  public getTodos(): ITiket[] {
+  public getTodos(): Promise<ITiket[]> {
 
     if (this.LocalTiketsArray.length === 0) { // ~~ this.LocalTiketsArray.length
       this.updateLocalTiketsArray();
     }
 
-    return this.LocalTiketsArray;
+    return Promise.resolve(this.LocalTiketsArray);
   }
 
   public updateLocalTiketsArray(): void {
@@ -31,8 +31,6 @@ export class TodoItemsService {
         this.LocalTiketsArray.push(item);
       });
     }
-
-    // console.log('updateLocalTiketsArray', this.LocalTiketsArray.length);
   }
 
 }

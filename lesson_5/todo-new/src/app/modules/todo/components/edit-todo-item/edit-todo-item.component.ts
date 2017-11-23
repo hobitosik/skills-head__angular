@@ -25,22 +25,31 @@ export class EditTodoItemComponent implements OnInit, OnDestroy {
     private todoItemsService: TodoItemsService,
     private activatedRoute: ActivatedRoute
   ) {
-    this.qItems = this.todoItemsService.getTodos().length;
-    console.log('Всего задач', this.qItems);
+    this.todoItemsService.getTodos()
+      .then((todos) => {
+        this.qItems = todos.length;
+        console.log('Всего задач', this.qItems);
+      });
   }
 
   ngOnInit() {
     this.itemId = this.activatedRoute.snapshot.paramMap.get('itemId');
     // console.log(this.itemId);
     if (this.itemId !== 'new') {
-      this.editTask = this.todoItemService.getTiket(Number(this.itemId));
-      // console.log(this.editTask);
+      this.todoItemService.getTiket(Number(this.itemId))
+        .then((item) => {
+          this.editTask = item;
+          // console.log(this.editTask);
+        });
     }
 
     this.activatedRoute.paramMap.subscribe((params) => {
       // console.log(params.get('itemId'));
-      this.editTask = this.todoItemService.getTiket(Number(params.get('itemId')));
-      // console.log(this.editTask);
+      this.todoItemService.getTiket(Number(params.get('itemId')))
+        .then((item) => {
+          this.editTask = item;
+          console.log(this.editTask);
+        });
     });
   }
 

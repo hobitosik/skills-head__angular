@@ -12,11 +12,14 @@ export class TodoItemService {
   constructor(
     private todoItemsService: TodoItemsService
   ) {
-    this.qItems = this.todoItemsService.getTodos().length;
+    this.todoItemsService.getTodos()
+      .then((todos) => {
+        this.qItems = todos.length;
+      });
   }
 
   // загрузка задачи из LocalStorage по id
-  public getTiket(id: number): ITiket {
+  public getTiket(id: number): Promise<ITiket> {
 
     const tiketsArray = JSON.parse(localStorage.getItem('todo'));
     // console.log(tiketsArray);
@@ -25,7 +28,7 @@ export class TodoItemService {
       if (tiketsArray[i].id === id) {
         this.todoTiket = tiketsArray[i];
         // console.log(this.todoTiket);
-        return this.todoTiket;
+        return Promise.resolve(this.todoTiket);
       }
     }
 
@@ -49,7 +52,6 @@ export class TodoItemService {
     console.log('Новый тикет', this.todoTiket);
 
     this.setTiket(this.todoTiket, title, description, status);
-    console.log(this.todoItemsService.getTodos().length);
 
   }
 
@@ -62,7 +64,7 @@ export class TodoItemService {
 
     const todoTiketsArray: ITiket[] = JSON.parse(localStorage.getItem('todo'));
 
-    if (this.qItems !== tiketChanged.id) {
+    if (this.qItems !== todoTiketsArray.length) {
       todoTiketsArray.push(tiketChanged);
     } else {
       Object.assign(todoTiketsArray[tiketChanged.id - 1], tiketChanged);

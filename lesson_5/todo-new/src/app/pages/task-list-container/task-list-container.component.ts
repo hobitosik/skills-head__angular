@@ -30,10 +30,13 @@ export class TaskListContainerComponent implements OnInit {
 
     // здесь мы берем полученный из сервиса массив задач, пробегаемся по нему, и каждому элементу создаем
     // клон. и этот клон записываем в новую коллекцию todos
-    this.todoItemsService.getTodos().forEach(element => {
-      const item = Object.assign({}, element);
-      this.todos.push(item);
-    });
+    this.todoItemsService.getTodos()
+      .then((todos) => {
+        todos.forEach(element => {
+          const item = Object.assign({}, element);
+          this.todos.push(item);
+        });
+      });
 
     return this.todos;
   }
