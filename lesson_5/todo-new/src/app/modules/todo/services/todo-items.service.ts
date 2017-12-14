@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { ITiket } from '../../../interfaces/ITiket.interface';
 
@@ -7,8 +8,11 @@ export class TodoItemsService {
 
   private LocalTiketsArray: ITiket[];
 
-  constructor() {
+  constructor(
+    private httpClient: HttpClient
+  ) {
     this.LocalTiketsArray = [];
+    this.getTodos2();
   }
 
   public getTodos(): Promise<ITiket[]> {
@@ -18,6 +22,17 @@ export class TodoItemsService {
     }
 
     return Promise.resolve(this.LocalTiketsArray);
+  }
+
+  public getTodos2(): Promise<any> {
+
+    this.httpClient.get('/api')
+      .toPromise()
+        .then(response => {
+          console.log(response);
+        });
+
+    return null;
   }
 
   public updateLocalTiketsArray(): void {
